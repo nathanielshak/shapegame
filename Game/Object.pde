@@ -1,5 +1,9 @@
 import java.lang.Math;
 
+public interface Collidable {
+	public void on_collision_enter(Object o);
+}
+
 enum HitFrom {
 	TOP,
 	BOTTOM,
@@ -8,7 +12,7 @@ enum HitFrom {
 	ENUM_SIZE
 };
 
-class Object {
+class Object implements Collidable {
 	String m_name;
 	float m_left, m_right, m_top, m_bottom;
 	float m_x, m_y;
@@ -115,12 +119,14 @@ class Object {
 				(m_top > o.top() && m_top < o.bottom())) &&
 				((m_right < o.right() && m_right > o.left()) ||
 				(m_left > o.left() && m_left < o.right()))) {
+				on_collision_enter(o);
 				return true;
 			}
 			else if (m_top == o.top() &&
 					m_bottom == o.bottom() &&
 					(m_left < o.right() ||
 					 m_right > o.left())) {
+				on_collision_enter(o);
 				return true;
 			}	
 			else if (m_left == o.left() &&
@@ -129,6 +135,7 @@ class Object {
 					  m_top < o.bottom()) ||
 					 (m_top < o.bottom() &&
 					  m_bottom > o.top()))) {
+				on_collision_enter(o);
 				return true;
 			}
 		}
@@ -207,6 +214,9 @@ class Object {
 		}
 	}
 
-	void display() {
-	};
+	void display() {}
+
+	void on_collision_enter(Object o) { 
+		println("Collision Enter. Hit: " + o.name()); 
+	}
 }
