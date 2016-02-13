@@ -56,36 +56,36 @@ void draw(){
 
 void keyPressed() {
 	if (keyCode == UP) {
-		game_state.toggle_up();
+		game_state.set_up(true);
 	}
 
 	if (keyCode == DOWN) {
-		game_state.toggle_down();
+		game_state.set_down(true);
 	}
 
 	if (keyCode == LEFT) {
-		game_state.toggle_left();
+		game_state.set_left(true);
 	}
 
 	if (keyCode == RIGHT) {
-		game_state.toggle_right();
+		game_state.set_right(true);
 	}
 }
 
 void keyReleased() {
 	if (keyCode == UP) {
-		game_state.toggle_up();
+		game_state.set_up(false);
 	}
 
 	if (keyCode == DOWN) {
-		game_state.toggle_down();
+		game_state.set_down(false);
 	}
 
 	if (keyCode == LEFT) {
-		game_state.toggle_left();
+		game_state.set_left(false);
 	}
 
 	if (keyCode == RIGHT) {
-		game_state.toggle_right();
+		game_state.set_right(false);
 	}
 }

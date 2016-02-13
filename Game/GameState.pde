@@ -45,20 +45,20 @@ class GameState {
 	}
 
 	// Setters
-	void toggle_up() {
-		key_up = !key_up;
+	void set_up(boolean pressed) {
+		key_up = pressed;
 	}
 
-	void toggle_down() {
-		key_down = !key_down;
+	void set_down(boolean pressed) {
+		key_down = pressed;
 	}
 
-	void toggle_left() {
-		key_left = !key_left;
+	void set_left(boolean pressed) {
+		key_left = pressed;
 	}
 
-	void toggle_right() {
-		key_right = !key_right;
+	void set_right(boolean pressed) {
+		key_right = pressed;
 	}
 
 	// Updating Functions
