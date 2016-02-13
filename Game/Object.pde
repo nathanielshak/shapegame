@@ -16,6 +16,7 @@ class Object {
 	float m_ddx, m_ddy;
 	boolean m_visible;
 	boolean m_solid;
+	boolean m_movable;
 	boolean m_marked_for_adjustment;
 
 	Object(String n, float x, float y, float w, float h) {	
@@ -36,6 +37,7 @@ class Object {
 		
 		m_visible = false;
 		m_solid = false;
+		m_movable = true;
 		m_marked_for_adjustment = false;
 	}
 
@@ -65,6 +67,14 @@ class Object {
 
 	void set_solid(boolean is_solid) {
 		m_solid = is_solid;
+	}
+
+	void set_movable(boolean is_movable) {
+		m_movable = is_movable;
+	}
+
+	boolean movable() {
+		return m_movable;
 	}
 
 	boolean visible() {
@@ -173,8 +183,16 @@ class Object {
 	void update(GameState gs) {};
 
 	void apply_velocity() {
-		m_x += m_dx;
-		m_y += m_dy;
+		if (!m_movable) {
+			m_dx = 0;
+			m_dy = 0;
+			m_ddx = 0;
+			m_ddy = 0;
+		}
+		else {
+			m_x += m_dx;
+			m_y += m_dy;
+		}
 		update_hitbox();
 	}
 

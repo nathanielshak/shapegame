@@ -30,15 +30,22 @@ void setup(){
 	game_objects.put(ObjectID.BOUNDARY_TOP, new CollisionObject("BoundaryTop", 0, -20, 500, 20));
 	game_objects.get(ObjectID.BOUNDARY_TOP).set_solid(true);
 	game_objects.get(ObjectID.BOUNDARY_TOP).set_visible(true);
+	game_objects.get(ObjectID.BOUNDARY_TOP).set_movable(false);
+
 	game_objects.put(ObjectID.BOUNDARY_LEFT, new CollisionObject("BoundaryLeft", -20, 0, 20, 500));
 	game_objects.get(ObjectID.BOUNDARY_LEFT).set_solid(true);
 	game_objects.get(ObjectID.BOUNDARY_LEFT).set_visible(true);
+	game_objects.get(ObjectID.BOUNDARY_LEFT).set_movable(false);
+
 	game_objects.put(ObjectID.BOUNDARY_RIGHT, new CollisionObject("BoundaryRight", 500, 0, 20, 500));
 	game_objects.get(ObjectID.BOUNDARY_RIGHT).set_solid(true);
 	game_objects.get(ObjectID.BOUNDARY_RIGHT).set_visible(true);
+	game_objects.get(ObjectID.BOUNDARY_RIGHT).set_movable(false);
+
 	game_objects.put(ObjectID.BOUNDARY_BOTTOM, new CollisionObject("BoundaryBottom", 0, 500, 500, 20));
 	game_objects.get(ObjectID.BOUNDARY_BOTTOM).set_solid(true);
 	game_objects.get(ObjectID.BOUNDARY_BOTTOM).set_visible(true);
+	game_objects.get(ObjectID.BOUNDARY_BOTTOM).set_movable(false);
 	
 	game_state = new GameState();
 }
@@ -63,7 +70,9 @@ void draw(){
 	}
 	
 	for (int i=0; i<game_objs_list.size(); i++) {
-		game_objs_list.get(i).adjust_position(game_objs_list);
+		if (game_objs_list.get(i).movable()) {
+			game_objs_list.get(i).adjust_position(game_objs_list);
+		}
 	}
 
 	for (int i=0; i<game_objs_list.size(); i++) {
