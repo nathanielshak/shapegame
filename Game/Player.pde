@@ -28,6 +28,9 @@ public class Player extends Object {
 			m_dy = 2;		
 			m_y += m_dy;  
 		}
+		else{
+			m_dy = 0;
+		}
 
 		if (gs.right()){
 			m_dx = 2;		
@@ -36,6 +39,9 @@ public class Player extends Object {
 		else if (gs.left()){
 			m_dx = -2;		
 			m_x += m_dx;  
+		}
+		else {
+			m_dx = 0;
 		}
 
 		update_hitbox();

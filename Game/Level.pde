@@ -24,7 +24,7 @@ public class Level {
 public class Level1 extends Level {
   
   public Level1(){
-    super(0,1); 
+    super(0,0); 
   }
   
   void initLevel(){
