@@ -21,49 +21,29 @@ public class Player extends Object {
 
 	public void update(GameState gs){
 		if (gs.up()){ 
-			m_dy -= 1;		
+			m_dy = -2;		
 			m_y += m_dy;  
 		}
 		else if (gs.down()){
-			m_dy += 1;		
+			m_dy = 2;		
 			m_y += m_dy;  
 		}
-		/*
-		else if (m_dy > 0.1) {
-			m_dy -= 0.2;
-			m_y += m_dy;  
-		}
-		else if (m_dy < -0.1) {
-			m_dy += 0.2;
-			m_y += m_dy;  
-		}
-		*/
 		else {
 			m_dy = 0;
 		}
 
 		if (gs.right()){
-			m_dx += 1;		
+			m_dx = 2;		
 			m_x += m_dx;  
 		}
 		else if (gs.left()){
-			m_dx -= 1;		
+			m_dx = -2;		
 			m_x += m_dx;  
 		}
-		/*
-		else if (m_dx > 0.1) {
-			m_dx -= 0.2;
-			m_x += m_dx;  
-		}
-		else if (m_dx < -0.1) {
-			m_dx += 0.2;
-			m_x += m_dx;  
-		}
-		*/
 		else {
 			m_dx = 0;
 		}
 
-		update_hitbox(m_width, m_height);
+		update_hitbox();
 	}
 }

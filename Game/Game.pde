@@ -15,13 +15,15 @@ GameState game_state;
 void setup(){
 	size(500, 500);
 	game_objects = new EnumMap<ObjectID, Object>(ObjectID.class);
-	game_objects.put(ObjectID.PLAYER, new Player("Player", 0, 90, 30, 30));
+	game_objects.put(ObjectID.PLAYER, new Player("Player", 60, 90, 30, 30));
 	game_objects.get(ObjectID.PLAYER).set_solid(true);
 	game_objects.get(ObjectID.PLAYER).set_visible(true);
 
-	game_objects.put(ObjectID.OBSTACLE1, new CollisionObject("Obstacle1", 70, 90, 30, 50));		
+	game_objects.put(ObjectID.OBSTACLE1, new CollisionObject("Obstacle1", 240, 90, 30, 50));		
 	game_objects.get(ObjectID.OBSTACLE1).set_solid(true);
 	game_objects.get(ObjectID.OBSTACLE1).set_visible(true);
+	game_objects.get(ObjectID.PLAYER).set_acceleration(0, 1);
+
 	game_state = new GameState();
 }
 
@@ -35,11 +37,9 @@ void draw(){
 		game_objs_list.get(i).update(game_state);
 	}
 
-	if (game_objs_list.get(0).colliding_with(game_objs_list.get(1))) {
-		println("Collision");
-	}
-	else {
-		println();
+	for (int i=0; i<game_objs_list.size(); i++) {
+		game_objs_list.get(i).apply_velocity();
+		game_objs_list.get(i).apply_acceleration(5, 5);
 	}
 
 	for (int i=0; i<game_objs_list.size(); i++) {
