@@ -56,7 +56,7 @@ public class Level1 extends Level {
     ((CollisionObject)game_objects.get(5)).set_kill(true);
     for(int i = 0; i < 10; i++) {
       
-    
+    }
   }
   
 }
