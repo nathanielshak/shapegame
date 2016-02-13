@@ -1,6 +1,6 @@
 class Object {
 	int left, right, top, bottom;
-	bool visible;
+	boolean visible;
 
 	Object() {
 		left = 0;

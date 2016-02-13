@@ -1,35 +1,69 @@
-public class Player {
-  
+public class Player {  
   float x;
   float y;
   float size;
-  float speed;
+  float dx;
+  float dy;
   
   Player(){
     x = 30;
     y = 30;
-    size = 50;
+    size = 30;
+ 	dx = 1;
+	dy = 1;	
   }
   
   public void display(){
     rect(x, y, size, size);  
   }
-  
+
+	public void set_size(int s) {
+		size = s;
+	}
+
   public void update(GameState gs){
-    if (gs.up() == UP){
-      
-      y -= speed;  
+    if (gs.up()){ 
+		println("Player Up");
+		dy -= 1;		
+		y += dy;  
     }
-    else if (gs.down() == DOWN){
-      y += speed;  
+	else if (gs.down()){
+		println("Player Down");
+		dy += 1;		
+		y += dy;  
     }
-    else if (gs.right() == RIGHT){
-      x += speed;  
+	else if (dy > 0) {
+		dy -= 0.2;
+		y += dy;  
+	}
+	else if (dy < 0) {
+		dy += 0.2;
+		y += dy;  
+	}
+	else {
+		dy = 0;
+	}
+
+	if (gs.right()){
+		println("Player Right");
+		dx += 1;		
+		x += dx;  
     }
-    else if (gs.left() == LEFT){
-      x -= speed;  
+    else if (gs.left()){
+		println("Player Left");
+		dx -= 1;		
+		x += dx;  
     }
-    
+	else if (dx > 0) {
+		dx -= 0.2;
+		x += dx;  
+	}
+	else if (dx < 0) {
+		dx += 0.2;
+		x += dx;  
+	}
+	else {
+		dx = 0;
+	}
   }
-  
 }

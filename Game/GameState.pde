@@ -1,9 +1,9 @@
 class GameState {
-	bool is_key_pressed;
-	bool key_up;
-	bool key_down;
-	bool key_left;
-	bool key_right;
+	boolean is_key_pressed;
+	boolean key_up;
+	boolean key_down;
+	boolean key_left;
+	boolean key_right;
 
 	int curr_hour, curr_minute, curr_second; // Current clock time
 	int dt; // Time passed from last cycle
@@ -25,81 +25,64 @@ class GameState {
 	}
 
 	// Getters
-	bool key_pressed() {
+	boolean key_pressed() {
 		return is_key_pressed;
 	}
 
-	bool up() {
+	boolean up() {
 		return key_up;
 	}
 
-	bool down() {
+	boolean down() {
 		return key_down;
 	}
 
-	bool left() {
+	boolean left() {
 		return key_left;
 	}
 
-	bool right() {
+	boolean right() {
 		return key_right;
+	}
+
+	// Setters
+	void toggle_up() {
+		key_up = !key_up;
+	}
+
+	void toggle_down() {
+		key_down = !key_down;
+	}
+
+	void toggle_left() {
+		key_left = !key_left;
+	}
+
+	void toggle_right() {
+		key_right = !key_right;
 	}
 
 	// Updating Functions
 	void update() {
-		update_input();
 		update_time();			
 	}
 
-	void update_input() {
-		if (keyPressed()) {
-			is_key_pressed = true;
-
-			if (keyCode == UP) {
-				key_up = true;
-			}
-			else {
-				key_up = false;
-			}
-			
-			if (keyCode == DOWN) {
-				key_down = true;
-			}
-			else {
-				key_down = false;
-			}
-
-			if (keyCode == LEFT) {
-				key_left = true;
-			}
-			else {
-				key_left = false;
-			}
-
-			if (keyCode == RIGHT) {
-				key_right = true;
-			}	
-			else {
-				key_right = false;
-			}
-		}
-	}
-
 	void update_time() {
-		int old_hour = current_hour;
-		int old_minute = current_minute;
-		int old_second = current_second;
+		println("Time Updated");
+		int old_hour = curr_hour;
+		int old_minute = curr_minute;
+		int old_second = curr_second;
 
-		current_hour = hour();
-		current_minute = minute();
-		current_second = second();
+		curr_hour = hour();
+		curr_minute = minute();
+		curr_second = second();
 
-		if (current_second > old_second) {
-			dt = current_second - old_second;
+		if (curr_second > old_second) {
+			dt = curr_second - old_second;
 			seconds_passed += dt;
 		}
 		else {
-			dt = (current_second + 60) - old_second;
+			dt = (curr_second + 60) - old_second;
 			seconds_passed += dt;
 		}
 	}
