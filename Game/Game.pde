@@ -6,7 +6,10 @@ import java.util.List;
 enum ObjectID {
 	PLAYER,
 	OBSTACLE1,
-	ENUM_SIZE,
+	BOUNDARY_TOP,
+	BOUNDARY_LEFT,
+	BOUNDARY_RIGHT,
+	BOUNDARY_BOTTOM,
 };
 
 Map<ObjectID, Object> game_objects;
@@ -24,6 +27,19 @@ void setup(){
 	game_objects.get(ObjectID.OBSTACLE1).set_visible(true);
 	game_objects.get(ObjectID.PLAYER).set_acceleration(0, 1);
 
+	game_objects.put(ObjectID.BOUNDARY_TOP, new CollisionObject("BoundaryTop", 0, -20, 500, 20));
+	game_objects.get(ObjectID.BOUNDARY_TOP).set_solid(true);
+	game_objects.get(ObjectID.BOUNDARY_TOP).set_visible(true);
+	game_objects.put(ObjectID.BOUNDARY_LEFT, new CollisionObject("BoundaryLeft", -20, 0, 20, 500));
+	game_objects.get(ObjectID.BOUNDARY_LEFT).set_solid(true);
+	game_objects.get(ObjectID.BOUNDARY_LEFT).set_visible(true);
+	game_objects.put(ObjectID.BOUNDARY_RIGHT, new CollisionObject("BoundaryRight", 500, 0, 20, 500));
+	game_objects.get(ObjectID.BOUNDARY_RIGHT).set_solid(true);
+	game_objects.get(ObjectID.BOUNDARY_RIGHT).set_visible(true);
+	game_objects.put(ObjectID.BOUNDARY_BOTTOM, new CollisionObject("BoundaryBottom", 0, 500, 500, 20));
+	game_objects.get(ObjectID.BOUNDARY_BOTTOM).set_solid(true);
+	game_objects.get(ObjectID.BOUNDARY_BOTTOM).set_visible(true);
+	
 	game_state = new GameState();
 }
 
