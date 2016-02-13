@@ -1,5 +1,5 @@
 class GameState {
-	bool key_pressed;
+	bool is_key_pressed;
 	bool key_up;
 	bool key_down;
 	bool key_left;
@@ -10,7 +10,7 @@ class GameState {
 	int seconds_passed;
 
 	GameState() {
-		key_pressed = false;
+		is_key_pressed = false;
 		key_up = false;
 		key_down = false;
 		key_left = false;
@@ -24,6 +24,28 @@ class GameState {
 		seconds_passed = 0;
 	}
 
+	// Getters
+	bool key_pressed() {
+		return is_key_pressed;
+	}
+
+	bool up() {
+		return key_up;
+	}
+
+	bool down() {
+		return key_down;
+	}
+
+	bool left() {
+		return key_left;
+	}
+
+	bool right() {
+		return key_right;
+	}
+
+	// Updating Functions
 	void update() {
 		update_input();
 		update_time();			
@@ -31,7 +53,7 @@ class GameState {
 
 	void update_input() {
 		if (keyPressed()) {
-			key_pressed = true;
+			is_key_pressed = true;
 
 			if (keyCode == UP) {
 				key_up = true;

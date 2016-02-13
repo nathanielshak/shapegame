@@ -15,19 +15,18 @@ public class Player {
     rect(x, y, size, size);  
   }
   
-  public void update(char keyStroke){
-    println(keyStroke);
-    if (keyStroke == UP){
+  public void update(GameState gs){
+    if (gs.up() == UP){
       
       y -= speed;  
     }
-    else if (keyStroke == DOWN){
+    else if (gs.down() == DOWN){
       y += speed;  
     }
-    else if (keyStroke == RIGHT){
+    else if (gs.right() == RIGHT){
       x += speed;  
     }
-    else if (keyStroke == LEFT){
+    else if (gs.left() == LEFT){
       x -= speed;  
     }
     
