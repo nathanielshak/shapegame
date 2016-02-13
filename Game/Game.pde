@@ -3,7 +3,7 @@ import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.List;
 
-enum ObjectID {
+public enum ObjectID {
 	PLAYER,
 	OBSTACLE1,
 	BOUNDARY_TOP,
@@ -12,41 +12,15 @@ enum ObjectID {
 	BOUNDARY_BOTTOM,
 };
 
-Map<ObjectID, Object> game_objects;
+//Map<ObjectID, Object> game_objects;
 GameState game_state;
+List<Level> levels;
+Level curLevel;
 
 void setup(){
-	size(500, 500);
-	game_objects = new EnumMap<ObjectID, Object>(ObjectID.class);
-	game_objects.put(ObjectID.PLAYER, new Player("Player", 60, 90, 30, 30));
-	game_objects.get(ObjectID.PLAYER).set_solid(true);
-	game_objects.get(ObjectID.PLAYER).set_visible(true);
+	size(500,500);
 
-	game_objects.put(ObjectID.OBSTACLE1, new CollisionObject("Obstacle1", 240, 90, 30, 50));		
-	game_objects.get(ObjectID.OBSTACLE1).set_solid(true);
-	game_objects.get(ObjectID.OBSTACLE1).set_visible(true);
-	game_objects.get(ObjectID.PLAYER).set_acceleration(0, 1);
-
-	game_objects.put(ObjectID.BOUNDARY_TOP, new CollisionObject("BoundaryTop", 0, -20, 500, 20));
-	game_objects.get(ObjectID.BOUNDARY_TOP).set_solid(true);
-	game_objects.get(ObjectID.BOUNDARY_TOP).set_visible(true);
-	game_objects.get(ObjectID.BOUNDARY_TOP).set_movable(false);
-
-	game_objects.put(ObjectID.BOUNDARY_LEFT, new CollisionObject("BoundaryLeft", -20, 0, 20, 500));
-	game_objects.get(ObjectID.BOUNDARY_LEFT).set_solid(true);
-	game_objects.get(ObjectID.BOUNDARY_LEFT).set_visible(true);
-	game_objects.get(ObjectID.BOUNDARY_LEFT).set_movable(false);
-
-	game_objects.put(ObjectID.BOUNDARY_RIGHT, new CollisionObject("BoundaryRight", 500, 0, 20, 500));
-	game_objects.get(ObjectID.BOUNDARY_RIGHT).set_solid(true);
-	game_objects.get(ObjectID.BOUNDARY_RIGHT).set_visible(true);
-	game_objects.get(ObjectID.BOUNDARY_RIGHT).set_movable(false);
-
-	game_objects.put(ObjectID.BOUNDARY_BOTTOM, new CollisionObject("BoundaryBottom", 0, 500, 500, 20));
-	game_objects.get(ObjectID.BOUNDARY_BOTTOM).set_solid(true);
-	game_objects.get(ObjectID.BOUNDARY_BOTTOM).set_visible(true);
-	game_objects.get(ObjectID.BOUNDARY_BOTTOM).set_movable(false);
-	
+  curLevel = new Level1();
 	game_state = new GameState();
 }
 
@@ -54,7 +28,7 @@ void draw(){
 	background(255,255,255);
 	game_state.update();
 
-	List<Object> game_objs_list = new ArrayList<Object>(game_objects.values());
+	List<Object> game_objs_list = curLevel.game_objects;
 
 	for (int i=0; i<game_objs_list.size(); i++) {
 		game_objs_list.get(i).update(game_state);
