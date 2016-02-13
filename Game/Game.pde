@@ -43,7 +43,11 @@ void draw(){
 	}
 
 	for (int i=0; i<game_objs_list.size(); i++) {
-		//game_objs_list.get(i).handle_collisions_with(game_objs_list);
+		game_objs_list.get(i).check_for_collisions_with(game_objs_list);
+	}
+	
+	for (int i=0; i<game_objs_list.size(); i++) {
+		game_objs_list.get(i).adjust_position(game_objs_list);
 	}
 
 	for (int i=0; i<game_objs_list.size(); i++) {

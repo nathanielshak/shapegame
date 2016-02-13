@@ -85,6 +85,38 @@ class Object {
 		return false;
 	}	
 
+	void check_for_collisions_with(List<Object> o) {
+		for (int i=0; i<o.size(); i++) {
+			if (colliding_with(o.get(i))) {
+				m_marked_for_adjustment = true;
+			}
+		}
+	}
+
+	void adjust_position(List<Object> objects) {
+		if (m_marked_for_adjustment) {
+			for (int i=0; i<objects.size(); i++) {
+				if (colliding_with(objects.get(i))) {
+					if (m_top > objects.get(i).top() && m_top < objects.get(i).bottom()) {
+						m_y += objects.get(i).bottom() - m_top;
+					}
+					else {
+						m_y -= m_bottom - objects.get(i).top();
+					}
+
+					if (colliding_with(objects.get(i))) {
+						if (m_right > objects.get(i).left() && m_right < objects.get(i).right()) {
+							m_x -= m_right - objects.get(i).left();
+						}
+						else {
+							m_x += objects.get(i).right() - m_left;
+						}
+					}
+					objects.get(i).adjusted();
+				}
+			}
+		}
+	}
 
 	void update(GameState gs) {};
 
