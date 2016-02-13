@@ -33,11 +33,13 @@ public class Level1 extends Level {
     player.set_acceleration(xGrav, yGrav);
     game_objects.add(player);
     
-    game_objects.add(new CollisionObject("Obstacle1", 240, 90, 30, 50));
+    
     game_objects.add(new CollisionObject("BoundaryTop", 0, -20, 500, 20));
     game_objects.add(new CollisionObject("BoundaryLeft", -20, 0, 20, 500));
     game_objects.add(new CollisionObject("BoundaryRight", 500, 0, 20, 500));
     game_objects.add(new CollisionObject("BoundaryBottom", 0, 500, 500, 20));
+    
+
     for(Object ob:game_objects){
       ob.set_solid(true);
       ob.set_visible(true);
@@ -45,6 +47,16 @@ public class Level1 extends Level {
         ob.set_movable(false);  
       }
     }
+  }
+  
+  void addObstacles(){
+    float x;
+    float y; 
+    game_objects.add(new CollisionObject("KillBlock", 250, 250, 100, 20));
+    ((CollisionObject)game_objects.get(5)).set_kill(true);
+    for(int i = 0; i < 10; i++) {
+      
+    
   }
   
 }

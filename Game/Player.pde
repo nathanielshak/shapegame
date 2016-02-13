@@ -46,4 +46,8 @@ public class Player extends Object {
 
 		update_hitbox();
 	}
+
+	public void kill() {
+		m_visible = false;
+	}
 }

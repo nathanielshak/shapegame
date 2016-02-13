@@ -120,6 +120,7 @@ class Object implements Collidable {
 				((m_right < o.right() && m_right > o.left()) ||
 				(m_left > o.left() && m_left < o.right()))) {
 				on_collision_enter(o);
+				o.on_collision_enter(this);
 				return true;
 			}
 			else if (m_top == o.top() &&
@@ -127,6 +128,7 @@ class Object implements Collidable {
 					(m_left < o.right() ||
 					 m_right > o.left())) {
 				on_collision_enter(o);
+				o.on_collision_enter(this);
 				return true;
 			}	
 			else if (m_left == o.left() &&
@@ -136,6 +138,7 @@ class Object implements Collidable {
 					 (m_top < o.bottom() &&
 					  m_bottom > o.top()))) {
 				on_collision_enter(o);
+				o.on_collision_enter(this);
 				return true;
 			}
 		}
