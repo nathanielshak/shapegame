@@ -68,7 +68,6 @@ class GameState {
 	}
 
 	void update_time() {
-		println("Time Updated");
 		int old_hour = curr_hour;
 		int old_minute = curr_minute;
 		int old_second = curr_second;

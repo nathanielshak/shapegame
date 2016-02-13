@@ -1,69 +1,69 @@
-public class Player {  
-  float x;
-  float y;
-  float size;
-  float dx;
-  float dy;
-  
-  Player(){
-    x = 30;
-    y = 30;
-    size = 30;
- 	dx = 1;
-	dy = 1;	
-  }
-  
-  public void display(){
-    rect(x, y, size, size);  
-  }
+public class Player extends Object {  
+	float m_width;
+	float m_height;
 
-	public void set_size(int s) {
-		size = s;
+	Player(String name, float x, float y, float w, float h){
+		super(name, x, y, w, h);
+		m_width = w;
+		m_height = h;
 	}
 
-  public void update(GameState gs){
-    if (gs.up()){ 
-		println("Player Up");
-		dy -= 1;		
-		y += dy;  
-    }
-	else if (gs.down()){
-		println("Player Down");
-		dy += 1;		
-		y += dy;  
-    }
-	else if (dy > 0) {
-		dy -= 0.2;
-		y += dy;  
-	}
-	else if (dy < 0) {
-		dy += 0.2;
-		y += dy;  
-	}
-	else {
-		dy = 0;
+	public void display() {
+		if (m_visible) {
+			rect(m_x, m_y, m_width, m_height);  
+		}
 	}
 
-	if (gs.right()){
-		println("Player Right");
-		dx += 1;		
-		x += dx;  
-    }
-    else if (gs.left()){
-		println("Player Left");
-		dx -= 1;		
-		x += dx;  
-    }
-	else if (dx > 0) {
-		dx -= 0.2;
-		x += dx;  
+	public void set_size(float w, float h) {
+		m_width = w;
+		m_height = h;
 	}
-	else if (dx < 0) {
-		dx += 0.2;
-		x += dx;  
+
+	public void update(GameState gs){
+		if (gs.up()){ 
+			m_dy -= 1;		
+			m_y += m_dy;  
+		}
+		else if (gs.down()){
+			m_dy += 1;		
+			m_y += m_dy;  
+		}
+		/*
+		else if (m_dy > 0.1) {
+			m_dy -= 0.2;
+			m_y += m_dy;  
+		}
+		else if (m_dy < -0.1) {
+			m_dy += 0.2;
+			m_y += m_dy;  
+		}
+		*/
+		else {
+			m_dy = 0;
+		}
+
+		if (gs.right()){
+			m_dx += 1;		
+			m_x += m_dx;  
+		}
+		else if (gs.left()){
+			m_dx -= 1;		
+			m_x += m_dx;  
+		}
+		/*
+		else if (m_dx > 0.1) {
+			m_dx -= 0.2;
+			m_x += m_dx;  
+		}
+		else if (m_dx < -0.1) {
+			m_dx += 0.2;
+			m_x += m_dx;  
+		}
+		*/
+		else {
+			m_dx = 0;
+		}
+
+		update_hitbox(m_width, m_height);
 	}
-	else {
-		dx = 0;
-	}
-  }
 }
