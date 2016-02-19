@@ -40,7 +40,7 @@ class Object implements Collidable {
 		m_ddy = 0;
 		
 		m_visible = false;
-		m_solid = false;
+		m_solid = true;
 		m_movable = true;
 		m_marked_for_adjustment = false;
 	}
@@ -134,9 +134,9 @@ class Object implements Collidable {
 			else if (m_left == o.left() &&
 					m_right == o.right() &&
 					((m_bottom > o.top() &&
-					  m_top < o.bottom()) ||
-					 (m_top < o.bottom() &&
-					  m_bottom > o.top()))) {
+					m_top < o.bottom()) ||
+					(m_top < o.bottom() &&
+					m_bottom > o.top()))) {
 				on_collision_enter(o);
 				o.on_collision_enter(this);
 				return true;
@@ -149,7 +149,10 @@ class Object implements Collidable {
 	void check_for_collisions_with(List<Object> o) {
 		for (int i=0; i<o.size(); i++) {
 			if (colliding_with(o.get(i))) {
-				m_marked_for_adjustment = true;
+				if (m_solid && o.get(i).solid()) {
+					// If both objects are solid and colliding, adjust them so that they are no longer colliding
+					m_marked_for_adjustment = true;
+				}
 			}
 		}
 	}
